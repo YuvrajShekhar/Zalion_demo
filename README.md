@@ -24,50 +24,9 @@ itself.
 - **Frontend:** React + Vite, no UI framework - plain CSS
 - **Deploy target:** Railway
 
-## Run locally
+## URL
 
-### Backend
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-
-Runs against a local `quotecompare.db` SQLite file by default - no Postgres
-needed for local dev. Set `DATABASE_URL` to point at Postgres instead
-(Railway injects this automatically when you add a Postgres service).
-
-API docs: http://localhost:8000/docs
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Opens on http://localhost:5173, talking to the backend on
-`http://localhost:8000` by default. Override with a `.env` file:
-
-```
-VITE_API_URL=http://localhost:8000
-```
-
-## Deploy to Railway
-
-1. Push this repo to GitHub.
-2. Create a new Railway project, add a **Postgres** service.
-3. Add a second service from the repo, root directory `backend`.
-   Railway auto-injects `DATABASE_URL` from the Postgres service - no
-   extra config needed. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
-4. Add a third service from the repo, root directory `frontend`.
-   Build command: `npm install && npm run build`.
-   Start command: `npm run preview`.
-   Set `VITE_API_URL` to the backend service's public Railway URL.
+Live : `https://superb-delight-production-c936.up.railway.app/`
 
 ## API
 
@@ -88,6 +47,3 @@ source venv/bin/activate
 pip install pytest
 pytest
 ```
-
-Covers the scoring engine's core cases: on-budget vs over-budget pricing,
-lead time within/outside deadline, MOQ and payment-term compliance.
